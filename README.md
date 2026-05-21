@@ -1,3 +1,11 @@
+> ⚠️ **注意：此版本已停止维护 / Notice: This version is no longer maintained**
+> 
+> **中文**：本仓库为 GameGoalManager 的基础 B/S 架构源码版，目前已不再进行特性更新。包含独立 Chromium 内核、全量数据隔离、解压即用的**原生桌面便携版（Portable Edition）**，请全体移步至全新独立主干仓库获取：👉 **[GameGoalManager-Desktop](https://github.com/smallc88888/GameGoalManager-Desktop)**
+> 
+> **English**: This repository contains the legacy B/S architecture source code for GameGoalManager and no new features will be added. For the **Desktop Portable Edition** featuring a side-loaded Chromium kernel, physical data isolation, and out-of-the-box experience, please navigate to the new main repository: 👉 **[GameGoalManager-Desktop](https://github.com/smallc88888/GameGoalManager-Desktop)**
+
+---
+
 <div align="center">
   
 # 🎮 GameGoalManager
