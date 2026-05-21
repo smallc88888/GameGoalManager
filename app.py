@@ -1,9 +1,8 @@
 import os
-import sys
 import threading
 import time
 import datetime
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify, session
 from sqlalchemy.orm import scoped_session
 import shutil
 import webview
@@ -13,8 +12,7 @@ from record_service import RecordService
 from rawg_client import RAWGClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from playwright.sync_api import sync_playwright
-from dotenv import set_key, load_dotenv
-import uuid
+from dotenv import set_key
 
 # 初始化 Flask
 app = Flask(__name__)
@@ -478,6 +476,15 @@ def api_export_milestone():
         # 3. 确立本机的物理存储路径（专门放在 exports 目录下）
         export_dir = os.path.join(app.root_path, 'static', 'exports')
         os.makedirs(export_dir, exist_ok=True)
+
+        # 注入“自清理机制”，杜绝硬盘无限制膨胀
+        for old_file in os.listdir(export_dir):
+            if old_file.endswith('.png'):
+                old_file_path = os.path.join(export_dir, old_file)
+                try:
+                    os.remove(old_file_path)
+                except Exception as e:
+                    print(f"[警告] 清理旧长图碎片失败: {e}")
 
         # 用时间戳保证文件名绝对不重复
         filename = f"milestone_{user_id}_{int(time.time())}.png"
